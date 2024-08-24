@@ -1,0 +1,40 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --foreground-rgb: 255, 255, 255;
+  --background-start-rgb: 234, 239, 230;
+  --background-end-rgb: 255, 255, 255;
+}
+
+html, body, .main { height:100%; }
+
+.header {
+  color: black !important;
+  background: rgb(240, 240, 240) !important; 
+  border-top: 2px solid grey;
+  border-bottom: 3px solid lightgrey;
+}
+.header .title {  }
+.header h1 { font-weight: bold !important; font-size: 16px; }
+
+.content { 
+  background: linear-gradient(
+      to bottom,
+      transparent,
+      rgb(var(--background-end-rgb))
+    )
+    rgb(var(--background-start-rgb));
+  flex: 1 !important; 
+  padding: 10px 80px;
+}
+
+.chartsContent {}
+.chartsContent .ant-card {
+  min-width: 40%;
+}
+.panel { padding-bottom: 10px; }
+.panel h2 { font-weight: bold; font-size: 16px; }
+.panelRight { justify-content: flex-end; }
+
