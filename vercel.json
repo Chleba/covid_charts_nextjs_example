@@ -1,0 +1,6 @@
+{
+  "crons": [{
+    "path": "/sql/store-data",
+    "schedule": "0 20 * * *"
+  }]
+}
