@@ -1,5 +1,6 @@
 import { ICovidAPIURL, ICovidAPIQuery } from '@/enums/enums';
 import { getAPIURL, getAPIQueries } from '@/libs/utils';
+import { sql } from '@vercel/postgres';
 
 const dateNow = new Date();
 
@@ -30,6 +31,26 @@ export async function GET() {
     },
   })
   const data = await res.json()
- 
-  return Response.json({ data })
+
+  // -- store data into DB
+  try {
+    const results = data.results;
+
+    for(let i=0; i<results.length; i++) {
+      const date = results[i].date;
+      const value = results[i].metric_value;
+
+      const res = await sql`
+        INSERT INTO covid_deaths (date, value)
+        SELECT ${date}, ${value}
+        WHERE NOT EXISTS (
+          SELECT 1 FROM covid_deaths WHERE date = ${date}
+        );
+      `;
+    }
+    return Response.json({data, status: 200});
+  } catch (error) {
+    return Response.json({ error: error });
+  }
+  return Response.json({ data });
 }

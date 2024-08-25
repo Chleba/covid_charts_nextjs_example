@@ -33,8 +33,22 @@ html, body, .main { height:100%; }
 .chartsContent {}
 .chartsContent .ant-card {
   min-width: 40%;
+  position: relative;
+  padding-bottom: 10px;
 }
+.chartsContent .ant-card-body { text-align: center; }
+
 .panel { padding-bottom: 10px; }
 .panel h2 { font-weight: bold; font-size: 16px; }
 .panelRight { justify-content: flex-end; }
+
+.cardFooter {
+  position: absolute;
+  width: 100%;
+  bottom: 0px;
+  left: 0px;
+  border-top: 1px solid #f0f0f0;
+  padding: 5px 16px;
+}
+.cardFooter span { color: grey; }
 
